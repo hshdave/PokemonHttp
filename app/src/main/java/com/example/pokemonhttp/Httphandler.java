@@ -30,6 +30,9 @@ public class Httphandler {
 
             InputStream in = new BufferedInputStream(con.getInputStream());
 
+            response = convertStream(in);
+
+
         } catch (MalformedURLException e) {
             e.printStackTrace();
         } catch (IOException e) {
