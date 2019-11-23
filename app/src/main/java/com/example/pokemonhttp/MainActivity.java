@@ -5,6 +5,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -72,5 +74,18 @@ public class MainActivity extends AppCompatActivity {
         RecyclerView recyclerView = findViewById(R.id.recycle_poke);
         recyclerView.setLayoutManager(linearLayout);
         recyclerView.setAdapter(adapter);
+        adapter.setOnItemClickListner(onItemClickpoke);
     }
+
+
+    public View.OnClickListener onItemClickpoke = new View.OnClickListener(){
+
+        @Override
+        public void onClick(View v) {
+            RecyclerView.ViewHolder viewHolder= (RecyclerView.ViewHolder) v.getTag();
+            int position = viewHolder.getAdapterPosition();
+
+            Toast.makeText(getApplicationContext(),pokelst.get(position).getName(),Toast.LENGTH_LONG).show();
+        }
+    };
 }
