@@ -1,6 +1,9 @@
 package com.example.pokemonhttp;
 
-public class Pokemon {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class Pokemon implements Parcelable {
 
     String name,image,type,ability,height,weight,desc;
 
@@ -13,6 +16,28 @@ public class Pokemon {
         this.weight = weight;
         this.desc = desc;
     }
+
+    protected Pokemon(Parcel in) {
+        name = in.readString();
+        image = in.readString();
+        type = in.readString();
+        ability = in.readString();
+        height = in.readString();
+        weight = in.readString();
+        desc = in.readString();
+    }
+
+    public static final Creator<Pokemon> CREATOR = new Creator<Pokemon>() {
+        @Override
+        public Pokemon createFromParcel(Parcel in) {
+            return new Pokemon(in);
+        }
+
+        @Override
+        public Pokemon[] newArray(int size) {
+            return new Pokemon[size];
+        }
+    };
 
     public String getName() {
         return name;
@@ -68,5 +93,21 @@ public class Pokemon {
 
     public void setDesc(String desc) {
         this.desc = desc;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(name);
+        dest.writeString(image);
+        dest.writeString(type);
+        dest.writeString(ability);
+        dest.writeString(height);
+        dest.writeString(weight);
+        dest.writeString(desc);
     }
 }

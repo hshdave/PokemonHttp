@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
@@ -86,6 +87,12 @@ public class MainActivity extends AppCompatActivity {
             int position = viewHolder.getAdapterPosition();
 
             Toast.makeText(getApplicationContext(),pokelst.get(position).getName(),Toast.LENGTH_LONG).show();
+
+            Intent i  = new Intent(MainActivity.this,PokeDesc.class);
+            i.putExtra("data",pokelst.get(position));
+            startActivity(i);
+
+
         }
     };
 }
